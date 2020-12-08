@@ -128,43 +128,37 @@ def game_hash
 end
 
 def num_points_scored(name)
-  answer = nil
-
-  game_hash.each do |team, details_hash|
-    players_array = details_hash[:players]
-    players_array.each do |player_details_hash|
-      if player_details_hash[:player_name] == name
-         answer = player_details_hash[:points]
-      end
-    end
-  end
-  answer
+  game_hash.each do |key, value|
+    new_value = value[:players]
+    new_value.each do |player|
+     if player[:player_name] == name 
+       return player[:points]
+     end 
+   end
+  end 
 end
+  
+
 
 
 def shoe_size(name)
-  answer = nil
-
-  game_hash.each do |team, details_hash|
-    players_array = details_hash[:players]
-      players_array.each do |player_details_hash|
-        if player_details_hash[:player_name] == name
-          answer = player_details_hash[:shoe]
-        end
+  game_hash.each do |key, value|
+    new_value = value[:players]
+    new_value.each do |reed|
+      if reed[:player_name] == name 
+        return reed[:shoe]
       end
+    end
   end
-  answer
 end
 
-
 def team_colors(team_name)
-    colors = nil
-    game_hash.each do |team, team_details_hash|
-        if team_details_hash[:team_name] == team_name
-            colors = team_details_hash[:colors].flatten
-        end
+  game_hash.each do |key, value|
+    new_value = value[:team_name]
+    if new_value == team_name
+     return value[:colors]
     end
-    colors
+  end
 end
 
 
@@ -176,19 +170,16 @@ end
 
 
 def player_numbers(team_name)
-  player_numbers_list = []
-  game_hash.each do |team, team_details_hash|
-    if team_details_hash[:team_name] == team_name
-      team_details_hash[:players].each do |player|
-        player.each do |key, value|
-          if key == :number 
-            player_numbers_list << value
-          end
-        end
+  numbers_array = []
+  game_hash.each do |key, value|
+    new_value = value[:team_name]
+    if new_value == team_name
+      value[:players].each do |player|
+        numbers_array << player[:number]
       end
     end
   end
-  player_numbers_list
+  return numbers_array
 end
 
 
