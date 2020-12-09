@@ -1,4 +1,4 @@
-
+require "pry"
 
 def game_hash
   {
@@ -125,6 +125,12 @@ def game_hash
     ]
   }
 }
+end
+
+def player
+
+def find_player
+  
 end
 
 def num_points_scored(name)
